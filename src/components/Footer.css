@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.footer {
+  background: #63459b; /* Cor de fundo roxa */
+  color: #fff; /* Cor do texto branca */
+  padding: 20px 0; /* Espaçamento superior e inferior */
+  text-align: center; /* Centralizar o texto */
+  font-family: 'Roboto', sans-serif; /* Fonte moderna */
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espaçamento entre os ícones */
+  margin-bottom: 10px; /* Espaçamento inferior */
+}
+
+.footer .social-links a {
+  color: #fff; /* Cor dos ícones */
+  font-size: 1.5em; /* Tamanho dos ícones */
+  transition: color 0.3s ease, transform 0.3s ease; /* Transição suave para a cor e transformação */
+}
+
+.footer .social-links a:hover {
+  color: #ffdd57; /* Cor dos ícones ao passar o mouse */
+  transform: scale(1.2); /* Aumentar o ícone ao passar o mouse */
+}
+
+.footer .rights {
+  margin-top: 10px; /* Espaçamento superior */
+  font-size: 1em;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .footer .social-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer .social-links a {
+    font-size: 1.2em;
+  }
+}

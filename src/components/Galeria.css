@@ -1,0 +1,127 @@
+/* Importação de fonte moderna */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilos da galeria */
+.galeria {
+  background: #f9f9f9;
+  padding: 50px 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.galeria .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.galeria h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #63459b;
+}
+
+.galeria .galeria-item {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria .galeria-item img,
+.galeria .galeria-item video {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galeria .galeria-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.galeria .galeria-item:hover img,
+.galeria .galeria-item:hover video {
+  transform: scale(1.1);
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #63459b; /* Cor dos botões de navegação */
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content img,
+.modal-content video {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-caption {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(99, 69, 155, 0.9); /* Fundo da legenda */
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.close-modal {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.close-modal:hover {
+  background: #e65c00; /* Efeito de hover no botão de fechar */
+}
+
+@media (max-width: 768px) {
+  .galeria .galeria-item img,
+  .galeria .galeria-item video {
+    height: 200px;
+  }
+
+  .modal-content img,
+  .modal-content video {
+    width: 100%;
+    height: auto;
+  }
+}

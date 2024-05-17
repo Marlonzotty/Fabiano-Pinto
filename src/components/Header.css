@@ -1,0 +1,85 @@
+.header {
+  background: linear-gradient(to right, #411761, #724793); /* Fundo gradiente suave */
+  color: #fff;
+  padding: 20px 0; /* Aumentar o padding para mais espaçamento */
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between; /* Ajustar o espaçamento entre os itens */
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 20px; /* Adicionar padding nas laterais */
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Espaçamento inferior para a logo */
+}
+
+.header .logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.header .nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Adicionar espaçamento entre os links */
+}
+
+.header .nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  padding: 5px 10px; 
+  transition: background 0.3s, color 0.3s; /* Transição suave para hover */
+  border-radius: 5px; 
+}
+
+.header .nav a:hover {
+  background: #ff6600; 
+  color: #fff;
+}
+
+.header .language-toggle {
+  margin-top: 10px;
+}
+
+.header .language-toggle button {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background 0.3s, color 0.3s; /* Transição suave para hover */
+}
+
+.header .language-toggle button:hover {
+  background: #e65c00; /* Cor de fundo ao passar o mouse */
+}
+
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header .logo {
+    margin-bottom: 20px; /* Mais espaçamento inferior para a logo */
+  }
+
+  .header .nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center; /* Centralizar os links de navegação */
+  }
+
+  .header .nav a {
+    margin: 5px 0; /* Espaçamento vertical entre os links */
+    width: auto; /* Links ocupando tamanho adequado */
+    text-align: center;
+  }
+}
