@@ -1,85 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .header {
-  background: linear-gradient(to right, #411761, #724793); /* Fundo gradiente suave */
-  color: #fff;
-  padding: 20px 0; /* Aumentar o padding para mais espaçamento */
+  background-color: #63459b; /* Cor de fundo roxa */
+  color: #fff; /* Cor do texto branca */
+  padding: 20px 0; /* Espaçamento superior e inferior */
+  text-align: center; /* Centralizar o texto */
+  font-family: 'Roboto', sans-serif; /* Fonte moderna */
+  position: relative; /* Para posicionar o ícone de menu */
 }
 
 .header .container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* Ajustar o espaçamento entre os itens */
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  padding: 0 20px; /* Adicionar padding nas laterais */
 }
 
-.header .logo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* Espaçamento inferior para a logo */
-}
-
-.header .logo img {
-  height: 50px;
-  margin-right: 10px;
+.header .logo h1 {
+  margin: 0;
+  font-size: 1.8em;
 }
 
 .header .nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px; /* Adicionar espaçamento entre os links */
+  gap: 20px; 
 }
 
 .header .nav a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
-  padding: 5px 10px; 
-  transition: background 0.3s, color 0.3s; /* Transição suave para hover */
-  border-radius: 5px; 
+  color: #fff; /* Cor dos links */
+  text-decoration: none; /* Remover sublinhado */
+  padding: 10px 15px; /* Espaçamento interno dos links */
+  transition: background 0.3s ease, color 0.3s ease; /* Transição suave para o background e a cor */
 }
 
 .header .nav a:hover {
-  background: #ff6600; 
-  color: #fff;
-}
-
-.header .language-toggle {
-  margin-top: 10px;
+  background: #1d0531; /* Cor de fundo ao passar o mouse */
+  border-radius: 10%;
+  color: #ffffff; /* Cor do texto ao passar o mouse */
 }
 
 .header .language-toggle button {
-  background: #ff6600;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px; /* Bordas arredondadas */
-  transition: background 0.3s, color 0.3s; /* Transição suave para hover */
+  background: #ffdd57; /* Cor de fundo do botão */
+  color: #63459b; /* Cor do texto do botão */
+  border: none; /* Remover borda */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  cursor: pointer; /* Cursor pointer ao passar o mouse */
+  transition: background 0.3s ease; /* Transição suave para o background */
 }
 
 .header .language-toggle button:hover {
-  background: #e65c00; /* Cor de fundo ao passar o mouse */
+  background: #e6c653; /* Cor de fundo ao passar o mouse */
+}
+
+.header .menu-icon {
+  display: none; /* Esconder ícone de menu por padrão */
+  font-size: 1.8em;
+  cursor: pointer;
+}
+
+.nav-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Transição suave para o modal */
+}
+
+.nav-modal.open {
+  opacity: 1;
+}
+
+.nav-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.nav-content a {
+  display: block;
+  color: #63459b;
+  margin: 10px 0;
+  font-size: 1.2em;
+  text-decoration: none; /* Remover sublinhado */
+  padding: 10px 0; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background 0.3s ease, color 0.3s ease; /* Transição suave */
+}
+
+.nav-content a:hover {
+  background: #63459b; /* Cor de fundo ao passar o mouse */
+  color: #fff; /* Cor do texto ao passar o mouse */
 }
 
 @media (max-width: 768px) {
-  .header .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .header .logo {
-    margin-bottom: 20px; /* Mais espaçamento inferior para a logo */
-  }
-
   .header .nav {
-    flex-direction: column;
-    width: 100%;
-    align-items: center; /* Centralizar os links de navegação */
+    display: none; /* Esconder navegação padrão em telas pequenas */
   }
 
-  .header .nav a {
-    margin: 5px 0; /* Espaçamento vertical entre os links */
-    width: auto; /* Links ocupando tamanho adequado */
-    text-align: center;
+  .header .menu-icon {
+    display: block; /* Mostrar ícone de menu em telas pequenas */
   }
+
+  .header .nav.open {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* Adicionando transições para divisão dos componentes */
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
