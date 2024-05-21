@@ -13,7 +13,7 @@ const Galeria = () => {
 
   const items = [
     { id: 1, type: 'image', src: projetoImg, caption: 'Legenda da imagem 1' },
-   // { id: 2, type: 'video', src: video1Mp4, caption: 'Legenda do vídeo 1' },
+    // { id: 2, type: 'video', src: video1Mp4, caption: 'Legenda do vídeo 1' },
     { id: 3, type: 'image', src: image2Img, caption: 'Legenda da imagem 2' },
   ];
 

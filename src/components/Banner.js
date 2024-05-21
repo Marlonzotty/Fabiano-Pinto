@@ -1,10 +1,11 @@
 import React from 'react';
 import './Banner.css';
-import FabianoImg from '../assets/fabiano.jpg'
+import FabianoImg from '../assets/fabiano.jpg';
 
 const Banner = () => {
   return (
     <section className="banner">
+      <div className="overlay"></div>
       <div className="container">
         <div className="banner-content">
           <img src={FabianoImg} alt="Fabiano Pinto" />
@@ -13,6 +14,7 @@ const Banner = () => {
             <p>
               Quero agradecer a Deus que sempre me honrou, meus familiares e amigos, em especial nossos 1149 eleitores.
             </p>
+            <a href="#realizacoes" className="cta-button">Quem sou eu</a>
           </div>
         </div>
       </div>

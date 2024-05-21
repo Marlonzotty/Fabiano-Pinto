@@ -80,6 +80,7 @@
   text-align: center;
   position: relative;
   border-radius: 10px;
+  transition: all 0.3s ease; /* Adiciona transição suave ao modal */
 }
 
 .modal-content img {
@@ -111,7 +112,7 @@
 }
 
 .close-modal:hover {
-  background: #e65c00; /* Efeito de hover no botão de fechar */
+  background: #e65c00;
 }
 
 @media (max-width: 768px) {

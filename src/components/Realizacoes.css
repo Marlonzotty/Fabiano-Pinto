@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .realizacoes {
-  background: linear-gradient(to right, #411761, #724793); /* Fundo gradiente suave */
+  background: linear-gradient(to right, #411761, #724793); 
   padding: 50px 0;
-  color: #fff; /* Cor do texto */
+  color: #fff; 
   font-family: 'Roboto', sans-serif;
 }
 
@@ -20,7 +20,6 @@
 .realizacoes p {
   margin-bottom: 40px;
   font-size: 1.0em;
- 
 }
 
 .realizacoes .realizacoes-grid {
@@ -30,20 +29,20 @@
 }
 
 .realizacoes .realizacao-item {
-  background: rgba(255, 255, 255, 0.1); /* Fundo translúcido */
+  background: rgba(255, 255, 255, 0.1); 
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin: 10px;
   padding: 20px;
   text-align: center;
   width: 150px;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
-  border-radius: 10px; /* Bordas arredondadas */
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; 
+  border-radius: 10px; 
 }
 
 .realizacoes .realizacao-item:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.2); /* Fundo mais claro ao passar o mouse */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra ao passar o mouse */
+  background: rgba(255, 255, 255, 0.2); 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 }
 
 .realizacoes .realizacao-item h3 {
@@ -53,17 +52,17 @@
 
 .realizacoes .realizacao-item p {
   font-size: 14px;
-  margin-top: 10px; /* Espaçamento superior para o texto */
+  margin-top: 10px; 
 }
 
 .realizacoes .realizacao-item svg {
-  font-size: 40px; /* Aumentar o tamanho dos ícones */
-  color: #ffdd57; /* Cor dos ícones */
-  transition: color 0.3s ease; /* Transição suave para a cor */
+  font-size: 40px; 
+  color: #ffdd57; 
+  transition: color 0.3s ease; 
 }
 
 .realizacoes .realizacao-item:hover svg {
-  color: #ffc107; /* Cor dos ícones ao passar o mouse */
+  color: #ffc107; 
 }
 
 @media (min-width: 768px) {
@@ -79,10 +78,21 @@
   .realizacoes p {
     margin-bottom: 40px;
     font-size: 1.5em;
-   
   }
 
   .realizacoes .realizacao-item {
     width: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  .realizacoes .realizacoes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 20px; 
+  }
+
+  .realizacoes .realizacao-item {
+    width: 66%; 
   }
 }

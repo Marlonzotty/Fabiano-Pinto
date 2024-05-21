@@ -1,18 +1,76 @@
-import React from 'react';
-import CountUp from 'react-countup';
-import { FaBuilding, FaCertificate, FaFileAlt, FaHeartbeat, FaGraduationCap, FaTools, FaTractor } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
 import './Realizacoes.css';
+import { FaBuilding, FaCertificate, FaFileAlt, FaHeartbeat, FaGraduationCap, FaTools, FaTractor } from 'react-icons/fa';
 
 const Realizacoes = () => {
   const realizacoes = [
-    { icon: <FaBuilding />, label: "Obras", count: 500 },
-    { icon: <FaCertificate />, label: "Certidões", count: 256 },
-    { icon: <FaFileAlt />, label: "Projetos de Lei", count: 40 },
-    { icon: <FaHeartbeat />, label: "Saúde", count: 361 },
-    { icon: <FaGraduationCap />, label: "Educação", count: 780 },
-    { icon: <FaTools />, label: "Infraestrutura", count: 543 },
-    { icon: <FaTractor />, label: "Agricultura", count: 163 },
+    { icon: <FaBuilding />, label: 'Obras', maxCount: 500 },
+    { icon: <FaCertificate />, label: 'Certidões', maxCount: 256 },
+    { icon: <FaFileAlt />, label: 'Projetos de Lei', maxCount: 40 },
+    { icon: <FaHeartbeat />, label: 'Saúde', maxCount: 361 },
+    { icon: <FaGraduationCap />, label: 'Educação', maxCount: 780 },
+    { icon: <FaTools />, label: 'Infraestrutura', maxCount: 543 },
+  //  { icon: <FaTractor />, label: 'Agricultura', maxCount: 163 },
   ];
+
+  const [counts, setCounts] = useState(realizacoes.map(() => 0));
+  const [directions, setDirections] = useState(realizacoes.map(() => 1));
+  const [paused, setPaused] = useState(realizacoes.map(() => false));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounts((prevCounts) =>
+        prevCounts.map((count, index) => {
+          if (paused[index]) return count;
+
+          const direction = directions[index];
+          const maxCount = realizacoes[index].maxCount;
+          if (count >= maxCount && direction === 1) {
+            setPaused((prevPaused) => {
+              const newPaused = [...prevPaused];
+              newPaused[index] = true;
+              return newPaused;
+            });
+            setTimeout(() => {
+              setPaused((prevPaused) => {
+                const newPaused = [...prevPaused];
+                newPaused[index] = false;
+                return newPaused;
+              });
+              setDirections((prevDirections) => {
+                const newDirections = [...prevDirections];
+                newDirections[index] = -1;
+                return newDirections;
+              });
+            }, 50000); 
+            return count;
+          } else if (count <= 0 && direction === -1) {
+            setPaused((prevPaused) => {
+              const newPaused = [...prevPaused];
+              newPaused[index] = true;
+              return newPaused;
+            });
+            setTimeout(() => {
+              setPaused((prevPaused) => {
+                const newPaused = [...prevPaused];
+                newPaused[index] = false;
+                return newPaused;
+              });
+              setDirections((prevDirections) => {
+                const newDirections = [...prevDirections];
+                newDirections[index] = 1;
+                return newDirections;
+              });
+            }, 10000); 
+            return count;
+          }
+          return count + direction;
+        })
+      );
+    }, 20); 
+
+    return () => clearInterval(interval);
+  }, [directions, paused, realizacoes]);
 
   return (
     <section className="realizacoes">
@@ -27,9 +85,7 @@ const Realizacoes = () => {
           {realizacoes.map((item, index) => (
             <div key={index} className="realizacao-item">
               {item.icon}
-              <h3>
-                <CountUp end={item.count} duration={7} /> {/* Animação da contagem */}
-              </h3>
+              <h3>{counts[index]}</h3>
               <p>{item.label}</p>
             </div>
           ))}

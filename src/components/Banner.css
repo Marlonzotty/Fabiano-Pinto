@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 .banner {
-  background: rgb(191, 164, 189); /* Corrigir a propriedade de cor */
+  position: relative;
+  background: rgb(191, 164, 189);
   background-size: cover;
   color: #fff;
   padding: 50px 0;
@@ -11,9 +12,22 @@
   align-items: center;
   text-align: center;
   min-height: 60vh;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Sobreposição de fundo */
+  z-index: 1;
 }
 
 .banner .container {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,14 +39,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Centraliza verticalmente */
+  justify-content: center;
+  animation: fadeIn 1.5s ease-in-out; /* Animação de fade in */
 }
 
 .banner .banner-content img {
-  border-radius: 29%;
+  border-radius: 10%;
   margin-bottom: 20px;
   width: 80%;
   max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.banner .banner-content img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .banner .banner-text {
@@ -40,12 +62,35 @@
 }
 
 .banner .banner-text h2 {
-  font-size: 2.5em;
+  font-size: 2em; /* Tamanho de fonte ajustado para melhor responsividade */
   margin-bottom: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px; /* Espaçamento ajustado */
 }
 
 .banner .banner-text p {
   font-size: 1.2em;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #ff6600;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #e65c00;
+  transform: scale(1.05);
 }
 
 @media (min-width: 768px) {
@@ -55,7 +100,7 @@
 
   .banner .container {
     flex-direction: row;
-    justify-content: center; /* Centraliza horizontalmente */
+    justify-content: center;
   }
 
   .banner .banner-content {
@@ -65,8 +110,8 @@
   .banner .banner-content img {
     margin-right: 30px;
     margin-bottom: 0;
-    width: 500px;
-    height: 500px;
+    width: 400px; /* Ajuste de largura para responsividade */
+    height: 400px; /* Ajuste de altura para responsividade */
     object-fit: cover;
   }
 
@@ -75,10 +120,36 @@
   }
 
   .banner .banner-text h2 {
-    font-size: 3em;
+    font-size: 2.5em; /* Tamanho de fonte ajustado para telas maiores */
   }
 
   .banner .banner-text p {
-    font-size: 1.5em;
+    font-size: 1.5em; /* Tamanho de fonte ajustado para telas maiores */
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .banner .banner-text h2 {
+    font-size: 1.5em; /* Tamanho de fonte ajustado para telas menores */
+  }
+
+  .banner .banner-text p {
+    font-size: 1em; /* Tamanho de fonte ajustado para telas menores */
+  }
+
+  .cta-button {
+    padding: 8px 16px; /* Ajuste do padding para telas menores */
+    font-size: 0.9em; /* Tamanho de fonte ajustado para telas menores */
   }
 }
