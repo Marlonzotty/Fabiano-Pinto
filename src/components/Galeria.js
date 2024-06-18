@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './Galeria.css';
-import projetoImg from '../assets/projeto.jpg'; // Importar a imagem
-import image2Img from '../assets/image2.jpg'; // Importar a imagem
-//import video1Mp4 from '../assets/video1.mp4'; // Importar o vídeo
+import projetoImg from '../assets/projeto.jpg';
+import image2Img from '../assets/image2.jpg';
 
 const Galeria = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -13,7 +11,6 @@ const Galeria = () => {
 
   const items = [
     { id: 1, type: 'image', src: projetoImg, caption: 'Legenda da imagem 1' },
-    // { id: 2, type: 'video', src: video1Mp4, caption: 'Legenda do vídeo 1' },
     { id: 3, type: 'image', src: image2Img, caption: 'Legenda da imagem 2' },
   ];
 
@@ -39,32 +36,26 @@ const Galeria = () => {
   };
 
   return (
-    <section className="galeria">
-      <div className="container">
-        <h2>Galeria de Imagens e Vídeos</h2>
+    <section className="py-20 text-center" style={{ background: 'linear-gradient(to right, rgb(106, 17, 203), rgb(129, 134, 143))' }}>
+      <div className="container mx-auto">
+        <h2 className="text-3xl font-bold text-white mb-10">Galeria de Imagens e Vídeos</h2>
         <Slider {...settings}>
           {items.map((item) => (
-            <div key={item.id} className="galeria-item" onClick={() => openModal(item)}>
-              {item.type === 'image' ? (
-                <img src={item.src} alt={item.caption} />
-              ) : (
-                <video src={item.src} />
-              )}
+            <div key={item.id} className="relative cursor-pointer overflow-hidden rounded-lg hover:scale-105 transition transform mx-auto max-w-xl" onClick={() => openModal(item)}>
+              <img src={item.src} alt={item.caption} className="w-full h-auto rounded-lg transition transform" />
+              <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 text-white opacity-0 hover:opacity-100 transition">
+                Clique para ver mais
+              </div>
             </div>
           ))}
         </Slider>
       </div>
-
       {modalOpen && currentItem && (
-        <div className="modal" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            {currentItem.type === 'image' ? (
-              <img src={currentItem.src} alt={currentItem.caption} />
-            ) : (
-              <video controls src={currentItem.src} />
-            )}
-            <p className="modal-caption">{currentItem.caption}</p>
-            <button className="close-modal" onClick={closeModal}>Fechar</button>
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75 z-50 p-4">
+          <div className="bg-white p-5 rounded-lg text-center max-w-xl w-full mx-auto">
+            <img src={currentItem.src} alt={currentItem.caption} className="w-full h-auto mb-5 rounded-lg" />
+            <p className="text-lg font-bold text-purple-700 mb-5">{currentItem.caption}</p>
+            <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition" onClick={closeModal}>Fechar</button>
           </div>
         </div>
       )}

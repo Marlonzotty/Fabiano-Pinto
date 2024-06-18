@@ -25,8 +25,8 @@
   overflow: hidden;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 600px; /* Define um tamanho máximo para os itens da galeria */
-  margin: 0 auto; /* Centraliza os itens da galeria */
+  max-width: 600px; 
+  margin: 0 auto; 
 }
 
 .galeria-item img,
