@@ -1,93 +1,67 @@
 import React, { useEffect, useState } from 'react';
-import { FaBuilding, FaCertificate, FaFileAlt, FaHeartbeat, FaGraduationCap, FaTools } from 'react-icons/fa';
+import { FaWheelchair, FaCalendarAlt, FaHeartbeat, FaUniversalAccess, FaBalanceScale } from 'react-icons/fa';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Realizacoes = () => {
   const realizacoes = [
-    { icon: <FaBuilding />, label: 'Obras', maxCount: 500 },
-    { icon: <FaCertificate />, label: 'Certidões', maxCount: 256 },
-    { icon: <FaFileAlt />, label: 'Projetos de Lei', maxCount: 40 },
-    { icon: <FaHeartbeat />, label: 'Saúde', maxCount: 361 },
-    { icon: <FaGraduationCap />, label: 'Educação', maxCount: 780 },
-    { icon: <FaTools />, label: 'Infraestrutura', maxCount: 543 },
+    { icon: <FaUniversalAccess />, label: 'Agências Bancárias com Atendimento LIBRAS', maxCount: 1 },
+    { icon: <FaWheelchair />, label: 'Agências com Acessibilidade para Cadeirantes', maxCount: 1 },
+    { icon: <FaCalendarAlt />, label: 'Dia da Ordem DeMolay', maxCount: 1 },
+    { icon: <FaHeartbeat />, label: 'Semana de Combate ao Diabetes', maxCount: 1 },
+    { icon: <FaBalanceScale />, label: 'Mudança de Nome para Moradores', maxCount: 1 },
+    { icon: <FaWheelchair />, label: 'Placas com Informações da Lei Maria da Penha', maxCount: 1 },
   ];
 
   const [counts, setCounts] = useState(realizacoes.map(() => 0));
-  const [directions, setDirections] = useState(realizacoes.map(() => 1));
-  const [paused, setPaused] = useState(realizacoes.map(() => false));
+  const [moneyCount, setMoneyCount] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCounts((prevCounts) =>
-        prevCounts.map((count, index) => {
-          if (paused[index]) return count;
-
-          const direction = directions[index];
-          const maxCount = realizacoes[index].maxCount;
-          if (count >= maxCount && direction === 1) {
-            setPaused((prevPaused) => {
-              const newPaused = [...prevPaused];
-              newPaused[index] = true;
-              return newPaused;
-            });
-            setTimeout(() => {
-              setPaused((prevPaused) => {
-                const newPaused = [...prevPaused];
-                newPaused[index] = false;
-                return newPaused;
-              });
-              setDirections((prevDirections) => {
-                const newDirections = [...prevDirections];
-                newDirections[index] = -1;
-                return newDirections;
-              });
-            }, 50000);
-            return count;
-          } else if (count <= 0 && direction === -1) {
-            setPaused((prevPaused) => {
-              const newPaused = [...prevPaused];
-              newPaused[index] = true;
-              return newPaused;
-            });
-            setTimeout(() => {
-              setPaused((prevPaused) => {
-                const newPaused = [...prevPaused];
-                newPaused[index] = false;
-                return newPaused;
-              });
-              setDirections((prevDirections) => {
-                const newDirections = [...prevDirections];
-                newDirections[index] = 1;
-                return newDirections;
-              });
-            }, 10000);
-            return count;
-          }
-          return count + direction;
-        })
+        prevCounts.map((count, index) =>
+          count < realizacoes[index].maxCount ? count + 1 : count
+        )
       );
-    }, 20);
+    }, 800);
 
     return () => clearInterval(interval);
-  }, [directions, paused, realizacoes]);
+  }, [realizacoes]);
+
+  useEffect(() => {
+    const moneyInterval = setInterval(() => {
+      setMoneyCount((prevCount) =>
+        prevCount < 7000000 ? prevCount + 5000 : prevCount
+      );
+    }, 15);
+
+    return () => clearInterval(moneyInterval);
+  }, []);
 
   return (
-    <section className="py-5 bg-gradient-to-r from-purple-700 to-purple-900 text-white text-center">
+    <section className="py-5" style={{ background: 'linear-gradient(to right, #6a11cb, #2575fc)', color: 'white' }}>
       <Container>
-        <h2 className="text-3xl font-bold mb-4">Em nossos 2 últimos mandatos fizemos 2163 requerimentos</h2>
-        <p className="mb-5">Trabalhamos frente à câmara municipal de Limeira nos anos primário mandatos de 2017, em 2018 assumi a vice aladoria vereador de Limeira como suplente eleito em 2016 até 2020. Neste tempo fizemos muito por nossa cidade, e agora em nosso novo mandato, fizemos muito mais para população Limeirense.</p>
+        <h2 className="text-4xl font-bold mb-4 text-center">Projetos Aprovados Durante o Mandato</h2>
+        <p className="mb-5 text-lg text-center">Estes são alguns dos principais projetos e realizações que garantimos durante nosso mandato.</p>
         <Row className="justify-content-center">
           {realizacoes.map((item, index) => (
             <Col key={index} md={6} lg={4} className="mb-4">
-              <div className="d-flex flex-column align-items-center bg-white bg-opacity-10 border border-white border-opacity-20 p-4 rounded-lg transition transform hover:scale-105">
-                {item.icon}
-                <h3 className="text-2xl font-bold my-2">{counts[index]}</h3>
+              <div className="d-flex flex-column align-items-center bg-white bg-opacity-10 border border-white border-opacity-20 p-4 rounded-lg transform transition duration-300 ease-in-out hover:scale-105 hover:bg-opacity-20">
+                <div className="text-5xl text-yellow-400 mb-3">
+                  {item.icon}
+                </div>
+                <h3 className="text-3xl font-bold my-2">{counts[index]}</h3>
                 <p className="text-lg">{item.label}</p>
               </div>
             </Col>
           ))}
         </Row>
+        <div className="mt-5 d-flex flex-column align-items-center">
+          <h3 className="text-4xl font-bold text-yellow-300 mb-3 text-center">Investimentos Totais</h3>
+          <p className="text-5xl font-extrabold text-yellow-400 text-center">
+            {moneyCount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+          </p>
+        </div>
       </Container>
     </section>
   );

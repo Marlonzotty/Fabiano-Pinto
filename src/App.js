@@ -5,6 +5,7 @@ import Banner from './components/Banner';
 import Realizacoes from './components/Realizacoes';
 import Galeria from './components/Galeria';
 import ProjetosFuturos from './components/ProjetosFuturos'; 
+import QuemSou from './components/QuemSou';  // Import the Quem Sou component
 import Footer from './components/Footer';
 import './App.css';
 
@@ -33,21 +34,13 @@ const App = () => {
     <Router>
       <div className="App">
         <Header />
-        <section>
-          <Banner />
-        </section>
-        <section>
-          <Realizacoes />
-        </section>
-        <section>
-          <Galeria />
-        </section>
-        <section>
-        <ProjetosFuturos />
-        </section>
-        <section>
-          <Footer />
-        </section>
+        <Routes>
+          <Route path="/proposituras" element={<div><Banner /><Realizacoes /></div>} />
+          <Route path="/projetos" element={<ProjetosFuturos />} />
+          <Route path="/quem-sou" element={<QuemSou />} /> {/* Add the route for Quem Sou */}
+          <Route path="/fale-conosco" element={<div><Galeria /><Footer /></div>} />
+          <Route path="/" element={<div><Banner /><Realizacoes /><Galeria /><ProjetosFuturos /><QuemSou /><Footer /></div>} />
+        </Routes>
       </div>
     </Router>
   );
