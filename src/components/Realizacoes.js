@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { FaWheelchair, FaCalendarAlt, FaHeartbeat, FaUniversalAccess, FaBalanceScale } from 'react-icons/fa';
+import { FaBullhorn, FaFileAlt, FaGavel, FaUsers, FaHandsHelping } from 'react-icons/fa'; // Ícones atualizados
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Realizacoes = () => {
   const realizacoes = [
-    { icon: <FaUniversalAccess />, label: 'Agências Bancárias com Atendimento LIBRAS', maxCount: 1 },
-    { icon: <FaWheelchair />, label: 'Agências com Acessibilidade para Cadeirantes', maxCount: 1 },
-    { icon: <FaCalendarAlt />, label: 'Dia da Ordem DeMolay', maxCount: 1 },
-    { icon: <FaHeartbeat />, label: 'Semana de Combate ao Diabetes', maxCount: 1 },
-    { icon: <FaBalanceScale />, label: 'Mudança de Nome para Moradores', maxCount: 1 },
-    { icon: <FaWheelchair />, label: 'Placas com Informações da Lei Maria da Penha', maxCount: 1 },
+    { icon: <FaBullhorn />, label: 'Denúncias', maxCount: 5 },
+    { icon: <FaFileAlt />, label: 'Ofícios enviados com solicitações de serviços e informações', maxCount: 500 },
+    { icon: <FaGavel />, label: 'Projetos aprovados pelo meu mandato', maxCount: 10 },
+    { icon: <FaUsers />, label: 'Comissões atuantes', maxCount: 5 },
+    { icon: <FaHandsHelping />, label: 'Projetos em co-participação', maxCount: 200 },
   ];
 
   const [counts, setCounts] = useState(realizacoes.map(() => 0));
@@ -23,7 +22,7 @@ const Realizacoes = () => {
           count < realizacoes[index].maxCount ? count + 1 : count
         )
       );
-    }, 800);
+    }, 12);
 
     return () => clearInterval(interval);
   }, [realizacoes]);
@@ -41,8 +40,8 @@ const Realizacoes = () => {
   return (
     <section className="py-5" style={{ background: 'linear-gradient(to right, #6a11cb, #2575fc)', color: 'white' }}>
       <Container>
-        <h2 className="text-4xl font-bold mb-4 text-center">Projetos Aprovados Durante o Mandato</h2>
-        <p className="mb-5 text-lg text-center">Estes são alguns dos principais projetos e realizações que garantimos durante nosso mandato.</p>
+        <h2 className="text-4xl font-bold mb-4 text-center">Realizações Durante o Mandato</h2>
+        <p className="mb-5 text-lg text-center">Estes são alguns dos principais números e realizações do nosso mandato.</p>
         <Row className="justify-content-center">
           {realizacoes.map((item, index) => (
             <Col key={index} md={6} lg={4} className="mb-4">
@@ -51,17 +50,11 @@ const Realizacoes = () => {
                   {item.icon}
                 </div>
                 <h3 className="text-3xl font-bold my-2">{counts[index]}</h3>
-                <p className="text-lg">{item.label}</p>
+                <p className="text-lg text-center">{item.label}</p>
               </div>
             </Col>
           ))}
         </Row>
-        <div className="mt-5 d-flex flex-column align-items-center">
-          <h3 className="text-4xl font-bold text-yellow-300 mb-3 text-center">Investimentos Totais</h3>
-          <p className="text-5xl font-extrabold text-yellow-400 text-center">
-            {moneyCount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-          </p>
-        </div>
       </Container>
     </section>
   );
